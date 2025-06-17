@@ -127,7 +127,7 @@ runhcs delete test-container --force
 ---
 
 ## Notes
-- `myscratch` and `test-containe` should not be pre-existing
+- `myscratch` and `test-container` should not be pre-existing
 - One scratch layer = one container
 - If `wclayer` fails, verify your base layer path
 - The ping command keeps the container alive for inspection
