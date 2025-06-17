@@ -17,22 +17,23 @@ You’ll need:
 
 ---
 
--Install working versions of wclayer and runhcs
+- Install working versions of wclayer and runhcs
 
 ```go
 go install github.com/Microsoft/hcsshim/cmd/wclayer@v0.8.9
 go install github.com/Microsoft/hcsshim/cmd/runhcs@v0.8.9
 ```
 
-## Step 1: Pull a Base Image
+## Step 1: Pull a Base Image, can pull nanoserver or servercore
 
 ```powershell
 docker pull mcr.microsoft.com/windows/nanoserver:ltsc2022
+docker pull mcr.microsoft.com/windows/servercore:ltsc2022
 ```
 
 ---
 
-## Step 2: Get the Base Layer Path from Image
+## Step 2: Get the Base Layer Path from Image [at this stage you can proceed with nanoserer or use servercore in 2.1]
 
 ```powershell
 $BaseLayer = (docker image inspect mcr.microsoft.com/windows/nanoserver:ltsc2022 | ConvertFrom-Json)[0].GraphDriver.Data.dir
