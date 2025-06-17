@@ -38,7 +38,7 @@ docker pull mcr.microsoft.com/windows/nanoserver:ltsc2022
 $BaseLayer = (docker image inspect mcr.microsoft.com/windows/nanoserver:ltsc2022 | ConvertFrom-Json)[0].GraphDriver.Data.dir
 ```
 
-#### 2.1 Getting Baselayer for servercore, its usually the last layer in the layerchain.json, after this just proceed with step 3
+#### 2.1 Getting Baselayer from `servercore base image`, its usually the last layer in the layerchain.json, after this just proceed with step 3
  ```pswh
  $TopLayer = (docker image inspect mcr.microsoft.com/windows/servercore:ltsc2022 | ConvertFrom-Json)[0].GraphDriver.Data.dir
  $BaseLayers = Get-Content "$TopLayer\layerchain.json" | ConvertFrom-Json
@@ -63,7 +63,7 @@ wclayer create --layer $BaseLayer $ScratchLayer
 ```powershell
 $BaseLayerEscaped = $BaseLayer -replace '\\', '\\'
 $ScratchLayerEscaped = $ScratchLayer -replace '\\', '\\'
-$Bundle = "C:\scratch-container0001"
+$Bundle = "C:\scratch-container"
 New-Item -ItemType Directory -Path $Bundle -Force
 
 $Config = @"
