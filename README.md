@@ -101,6 +101,10 @@ $Config | Out-File -Encoding ASCII -FilePath "$Bundle\config.json"
 runhcs create -b $Bundle test-container
 runhcs start test-container
 ```
+#### 5.1 To create and start the container simultaneously:
+```pwsh
+runhcs run -b $Bundle test-container
+```
 
 ---
 
@@ -132,6 +136,10 @@ runhcs delete test-container --force
 - If `wclayer` fails, verify your base layer path
 - The ping command keeps the container alive for inspection
 - Stop Docker if you see `0x20` errors about files in use
+- Sometimes, after deleting a container, you may need to dismount the scratch layer before running it again. Use the following PowerShell command
+  ```pwsh
+   Dismount-DiskImage -ImagePath "path_to_your_scratch_layer\sandbox.vhdx"
+  ```
 
 ---
 
